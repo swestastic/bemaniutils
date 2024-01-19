@@ -35,6 +35,7 @@ class JubeatFrontend(FrontendBase):
             VersionConstants.JUBEAT_QUBELL: 7,
             VersionConstants.JUBEAT_CLAN: 8,
             VersionConstants.JUBEAT_FESTO: 9,
+            VersionConstants.JUBEAT_AVENUE: 10,
         }
 
         for game, version, name in self.all_games():
@@ -159,6 +160,8 @@ class JubeatFrontend(FrontendBase):
                 VersionConstants.JUBEAT_PROP,
                 VersionConstants.JUBEAT_QUBELL,
                 VersionConstants.JUBEAT_FESTO,
+                # VersionConstants.JUBEAT_CLAN,
+                # VersionConstants.JUBEAT_AVENUE, # Not sure if these are necessary
             }
             else 0
         )
@@ -230,6 +233,7 @@ class JubeatFrontend(FrontendBase):
                 VersionConstants.JUBEAT_QUBELL: 7,
                 VersionConstants.JUBEAT_CLAN: 8,
                 VersionConstants.JUBEAT_FESTO: 9,
+                VersionConstants.JUBEAT_AVENUE: 10,
             }[version]
         return formatted_song
 

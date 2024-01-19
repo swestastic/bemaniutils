@@ -1005,6 +1005,7 @@ class GlobalMusicData(BaseGlobalData):
             7: VersionConstants.JUBEAT_QUBELL,
             8: VersionConstants.JUBEAT_CLAN,
             9: VersionConstants.JUBEAT_FESTO,
+            10: VersionConstants.JUBEAT_AVENUE,
         }.get(int(songid / 10000000), VersionConstants.JUBEAT)
         # Map the category to the version numbers defined on BEMAPI.
         categorymapping = {
@@ -1021,6 +1022,7 @@ class GlobalMusicData(BaseGlobalData):
             "7": VersionConstants.JUBEAT_QUBELL,
             "8": VersionConstants.JUBEAT_CLAN,
             "9": VersionConstants.JUBEAT_FESTO,
+            "10": VersionConstants.JUBEAT_AVENUE,
         }
         return Song(
             game=GameConstants.JUBEAT,

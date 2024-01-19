@@ -46,6 +46,7 @@ class CatalogObject(BaseObject):
             7: VersionConstants.JUBEAT_QUBELL,
             8: VersionConstants.JUBEAT_CLAN,
             9: VersionConstants.JUBEAT_FESTO,
+            10: VersionConstants.JUBEAT_AVENUE,
         }.get(int(song.id / 10000000), VersionConstants.JUBEAT)
         # Map the category to the version numbers defined on BEMAPI.
         categorymapping = {
@@ -62,6 +63,7 @@ class CatalogObject(BaseObject):
             VersionConstants.JUBEAT_QUBELL: "7",
             VersionConstants.JUBEAT_CLAN: "8",
             VersionConstants.JUBEAT_FESTO: "9",
+            VersionConstants.JUBEAT_AVENUE: "10",
         }
         return {
             "difficulty": song.data.get_int("difficulty"),
@@ -162,6 +164,7 @@ class CatalogObject(BaseObject):
         items = self.data.local.game.get_items(self.game, self.version)
 
         # Format it depending on the version
+        # Do Festo and Avenue need to be added here?
         if self.version in {
             VersionConstants.JUBEAT_PROP,
             VersionConstants.JUBEAT_QUBELL,

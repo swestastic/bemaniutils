@@ -2164,7 +2164,7 @@ class ImportJubeat(ImportBase):
         no_combine: bool,
         update: bool,
     ) -> None:
-        if version in ["saucer", "saucer-fulfill", "prop", "qubell", "clan", "festo"]:
+        if version in ["saucer", "saucer-fulfill", "prop", "qubell", "clan", "festo", "avenue"]:
             actual_version = {
                 "saucer": VersionConstants.JUBEAT_SAUCER,
                 "saucer-fulfill": VersionConstants.JUBEAT_SAUCER_FULFILL,
@@ -2172,6 +2172,7 @@ class ImportJubeat(ImportBase):
                 "qubell": VersionConstants.JUBEAT_QUBELL,
                 "clan": VersionConstants.JUBEAT_CLAN,
                 "festo": VersionConstants.JUBEAT_FESTO,
+                "avenue": VersionConstants.JUBEAT_AVENUE,
             }.get(version, -1)
         elif version in ["omni-prop", "omni-qubell", "omni-clan", "omni-festo"]:
             actual_version = {
@@ -2191,6 +2192,7 @@ class ImportJubeat(ImportBase):
         ]:
             # jubeat festo adds in separation of normal and hard mode scores.
             # This adds a duplicate of each chart so that we show separated scores.
+            # Does Avenue do this too? Need to check
             self.charts = [0, 1, 2, 3, 4, 5]
         elif actual_version in [
             VersionConstants.JUBEAT_SAUCER,
@@ -2206,7 +2208,7 @@ class ImportJubeat(ImportBase):
 
         else:
             raise CLIException(
-                "Unsupported Jubeat version, expected one of the following: saucer, saucer-fulfill, prop, omni-prop, qubell, omni-qubell, clan, omni-clan, festo, omni-festo!"
+                "Unsupported Jubeat version, expected one of the following: saucer, saucer-fulfill, prop, omni-prop, qubell, omni-qubell, clan, omni-clan, festo, omni-festo!, avenue"
             )
 
         super().__init__(config, GameConstants.JUBEAT, actual_version, no_combine, update)
@@ -2250,6 +2252,7 @@ class ImportJubeat(ImportBase):
                 11: VersionConstants.JUBEAT_QUBELL,
                 12: VersionConstants.JUBEAT_CLAN,
                 13: VersionConstants.JUBEAT_FESTO,
+                14: VersionConstants.JUBEAT_AVENUE,
             }
             if bpm_max > 0 and bpm_min < 0:
                 bpm_min = bpm_max
@@ -2296,6 +2299,7 @@ class ImportJubeat(ImportBase):
             VersionConstants.JUBEAT_QUBELL,
             VersionConstants.JUBEAT_CLAN,
             VersionConstants.JUBEAT_FESTO,
+            VersionConstants.JUBEAT_AVENUE,
         }:
             for emblem_entry in root.find("emblem_list") or []:
                 index = int(emblem_entry.find("index").text)
@@ -2364,6 +2368,7 @@ class ImportJubeat(ImportBase):
             VersionConstants.JUBEAT_QUBELL,
             VersionConstants.JUBEAT_CLAN,
             VersionConstants.JUBEAT_FESTO,
+            VersionConstants.JUBEAT_AVENUE,
         }:
             game = self.remote_game(server, token)
             for item in game.get_items(self.game, self.version):
