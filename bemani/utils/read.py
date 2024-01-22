@@ -2189,6 +2189,7 @@ class ImportJubeat(ImportBase):
             None,
             VersionConstants.JUBEAT_FESTO,
             VersionConstants.JUBEAT_FESTO + DBConstants.OMNIMIX_VERSION_BUMP,
+            VersionConstants.JUBEAT_AVENUE,
         ]:
             # jubeat festo adds in separation of normal and hard mode scores.
             # This adds a duplicate of each chart so that we show separated scores.
@@ -2208,7 +2209,7 @@ class ImportJubeat(ImportBase):
 
         else:
             raise CLIException(
-                "Unsupported Jubeat version, expected one of the following: saucer, saucer-fulfill, prop, omni-prop, qubell, omni-qubell, clan, omni-clan, festo, omni-festo!, avenue"
+                "Unsupported Jubeat version, expected one of the following: saucer, saucer-fulfill, prop, omni-prop, qubell, omni-qubell, clan, omni-clan, festo, omni-festo, avenue!"
             )
 
         super().__init__(config, GameConstants.JUBEAT, actual_version, no_combine, update)

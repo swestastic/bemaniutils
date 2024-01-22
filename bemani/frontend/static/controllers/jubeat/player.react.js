@@ -52,7 +52,13 @@ var profile_view = createReactClass({
                 {(player.common_jubility+player.pick_up_jubility).toFixed(1)}
                 </LabelledSection>
             :
-            // Default which version >= Saucer except qubell and festo
+            // version == avenue
+            this.state.version == 14 ?
+            <LabelledSection label="Jubility">
+            {(player.common_jubility+player.pick_up_jubility).toFixed(1)}
+            </LabelledSection>
+            :
+            // Default which version >= Saucer except qubell and festo and avenue
             this.state.version >= 8 ?
                 <LabelledSection label="Jubility">
                 {player.jubility / 100}

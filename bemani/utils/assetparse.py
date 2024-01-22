@@ -20,12 +20,14 @@ class ImportJubeat:
             "qubell": VersionConstants.JUBEAT_QUBELL,
             "clan": VersionConstants.JUBEAT_CLAN,
             "festo": VersionConstants.JUBEAT_FESTO,
+            "avenue": VersionConstants.JUBEAT_AVENUE,
         }.get(version, -1)
         if actual_version in {
             VersionConstants.JUBEAT_PROP,
             VersionConstants.JUBEAT_QUBELL,
             VersionConstants.JUBEAT_CLAN,
             VersionConstants.JUBEAT_FESTO,
+            VersionConstants.JUBEAT_AVENUE,
         }:
             self.version = actual_version
         else:

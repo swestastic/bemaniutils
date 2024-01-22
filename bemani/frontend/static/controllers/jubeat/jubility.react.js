@@ -57,6 +57,13 @@ var jubility_view = createReactClass({
     },
 
     renderJubilityBreakdown: function(player) {
+        if (this.state.version == 14) // avenue
+            return (
+                <div className='row'>
+                    {this.renderAvenueJubilityTable(player, true)}
+                    {this.renderAvenueJubilityTable(player, false)}
+                </div>
+            );
         if (this.state.version == 13) // festo
             return (
                 <div className='row'>
@@ -174,6 +181,63 @@ var jubility_view = createReactClass({
         );
     },
 
+    renderAvenueJubilityTable: function(player, pickup) {
+        if (pickup == true)
+            jubilityChart = player.pick_up_chart;
+        else
+            jubilityChart = player.common_chart;
+        if (typeof jubilityChart === 'undefined' || jubilityChart.length == 0) {
+            return null;
+        }
+        return(
+            <div className='col-6 col-12-medium'>
+                <p>
+                    <b>
+                    {pickup == true ? <b>Pick up chart breakdown</b> : <b>Common chart breakdown</b>}
+                    </b>
+                </p>
+                <p>Individual song jubility gets added to calculate total jubility.</p>
+                <Table 
+                    className='list jubility'
+                    columns={[
+                        {
+                            name: 'Song',
+                            render: function(entry) {
+                                return (
+                                    <a href={Link.get('individual_score', entry.music_id, this.convertChart(entry.seq))}>
+                                        <div>{ this.state.songs[entry.music_id].name }</div>
+                                    </a>
+                                );
+                            }.bind(this),
+                        },
+                        {
+                            name: 'Hard Mode',
+                            render: function(entry) { return entry.seq >= 3 ? 'Yes' : 'No'; }
+                        },
+                        {
+                            name: 'Music Rate',
+                            render: function(entry) { return entry.music_rate.toFixed(1) + '%'; },
+                            sort: function(a, b) {
+                                return a.music_rate - b.music_rate;
+                            },
+                            reverse: true,
+                        },
+                        {
+                            name: 'Jubility',
+                            render: function(entry) { return entry.value.toFixed(1); },
+                            sort: function(a, b) {
+                                return a.value - b.value;
+                            },
+                            reverse: true,
+                        },
+                    ]}
+                    defaultsort='Jubility'
+                    rows={jubilityChart}
+                />
+            </div>
+        );
+    },
+
     renderJubility: function(player) {
         return(
             // version == prop ( No Jubility )
@@ -202,7 +266,21 @@ var jubility_view = createReactClass({
                     </LabelledSection>
                 </div>
             :
-            // Default which version >= Saucer except qubell and festo
+            // version == avenue
+            this.state.version == 14 ? 
+            <div>
+                <LabelledSection label='Jubility'>
+                {(player.common_jubility+player.pick_up_jubility).toFixed(1)}
+                </LabelledSection>
+                <LabelledSection label='Common Jubility'>
+                    {player.common_jubility.toFixed(1)}
+                </LabelledSection>
+                <LabelledSection label='Pick up Jubility'>
+                    {player.pick_up_jubility.toFixed(1)}
+                </LabelledSection>
+            </div>
+            :
+            // Default which version >= Saucer except qubell and festo and avenue
             this.state.version >= 8 ? 
                 <div>
                     <LabelledSection label='Jubility'>

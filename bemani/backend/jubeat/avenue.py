@@ -2069,13 +2069,13 @@ class JubeatAvenue(
         root = Node.void("demodata_ave")
         return root
 
-    def handle_jbox_get_agreement_request(self, request: Node) -> Node:
-        root = Node.void("jbox")
+    def handle_jbox_ave_get_agreement_request(self, request: Node) -> Node:
+        root = Node.void("jbox_ave")
         root.add_child(Node.bool("is_agreement", True))
         return root
 
-    def handle_jbox_get_list_request(self, request: Node) -> Node:
-        root = Node.void("jbox")
+    def handle_jbox_ave_get_list_request(self, request: Node) -> Node:
+        root = Node.void("jbox_ave")
         root.add_child(Node.void("selection_list"))
         return root
 

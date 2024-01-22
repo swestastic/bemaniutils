@@ -76,6 +76,7 @@ class JubeatFrontend(FrontendBase):
             VersionConstants.JUBEAT_QUBELL,
             VersionConstants.JUBEAT_CLAN,
             VersionConstants.JUBEAT_FESTO,
+            VersionConstants.JUBEAT_AVENUE,
         }:
             return {
                 "emblems": [
@@ -160,18 +161,18 @@ class JubeatFrontend(FrontendBase):
                 VersionConstants.JUBEAT_PROP,
                 VersionConstants.JUBEAT_QUBELL,
                 VersionConstants.JUBEAT_FESTO,
+                VersionConstants.JUBEAT_AVENUE,  # Not sure if this is necessary
                 # VersionConstants.JUBEAT_CLAN,
-                # VersionConstants.JUBEAT_AVENUE, # Not sure if these are necessary
             }
             else 0
         )
         formatted_profile["pick_up_jubility"] = (
-            profile.get_float("pick_up_jubility") if profile.version == VersionConstants.JUBEAT_FESTO else 0
+            profile.get_float("pick_up_jubility") if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE else 0
         )
         formatted_profile["common_jubility"] = (
-            profile.get_float("common_jubility") if profile.version == VersionConstants.JUBEAT_FESTO else 0
+            profile.get_float("common_jubility") if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE else 0
         )
-        if profile.version == VersionConstants.JUBEAT_FESTO:
+        if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE:
             # Only reason this is a dictionary of dictionaries is because ValidatedDict doesn't support a list of dictionaries.
             # Probably intentionally lol. Just listify the pickup/common charts.
             formatted_profile["pick_up_chart"] = list(profile.get_dict("pick_up_chart").values())
