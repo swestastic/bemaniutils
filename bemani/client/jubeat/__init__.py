@@ -5,6 +5,7 @@ from bemani.client.jubeat.qubell import JubeatQubellClient
 from bemani.client.jubeat.clan import JubeatClanClient
 from bemani.client.jubeat.festo import JubeatFestoClient
 from bemani.client.jubeat.avenue import JubeatAvenueClient
+from bemani.client.jubeat.avenuebeyond import JubeatAvenueBeyondClient
 
 
 __all__ = [
@@ -15,4 +16,5 @@ __all__ = [
     "JubeatClanClient",
     "JubeatFestoClient",
     "JubeatAvenueClient"
+    "JubeatAvenueBeyondClient"
 ]

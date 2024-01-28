@@ -153,6 +153,12 @@ def get_client(proto: ClientProtocol, pcbid: str, game: str, config: Dict[str, A
             pcbid,
             config,
         )
+    if game == "jubeat-avenue-beyond":
+        return JubeatAvenueBeyondClient(
+            proto,
+            pcbid,
+            config,
+        )
     if game == "iidx-rootage":
         return IIDXRootageClient(
             proto,
@@ -412,6 +418,11 @@ def mainloop(
             "model": "L44:J:B:A:2022080301",
             "avs": "2.17.3 r8311",  # Not sure what this is supposed to be, need to check
         },
+        "jubeat-avenue-beyond": {
+            "name": "Jubeat Beyond the Avenue",
+            "model": "L44:J:B:A:2023092000",
+            "avs": "2.17.3 r8311",  # Not sure what this is supposed to be, need to check
+        },
         "iidx-rootage": {
             "name": "Beatmania IIDX ROOTAGE",
             "model": "LDJ:J:A:A:2019090200",
@@ -652,6 +663,7 @@ def main() -> None:
         "jubeat-8": "jubeat-clan",
         "jubeat-9": "jubeat-festo",
         "jubeat-10": "jubeat-avenue",
+        "jubeat-11": "jubeat-avenue-beyond",
         "ddr-12": "ddr-x2",
         "ddr-13": "ddr-x3",
         "ddr-14": "ddr-2013",

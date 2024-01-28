@@ -12,7 +12,7 @@ from bemani.backend.jubeat.common import (
     JubeatLobbyCheckHandler,
     JubeatLoggerReportHandler,
 )
-from bemani.backend.jubeat.festo import JubeatFesto
+from bemani.backend.jubeat.avenue import JubeatAvenue
 
 from bemani.backend.base import Status
 from bemani.common import Profile, Time, ValidatedDict, VersionConstants
@@ -20,7 +20,7 @@ from bemani.data import Data, UserID, Score, Song
 from bemani.protocol import Node
 
 
-class JubeatAvenue(
+class JubeatAvenueBeyond(
     JubeatDemodataGetHitchartHandler,
     JubeatDemodataGetNewsHandler,
     JubeatGamendRegisterHandler,
@@ -29,8 +29,8 @@ class JubeatAvenue(
     JubeatLoggerReportHandler,
     JubeatBase,
 ):
-    name: str = "Jubeat Avenue"
-    version: int = VersionConstants.JUBEAT_AVENUE
+    name: str = "Jubeat Beyond the Avenue"
+    version: int = VersionConstants.JUBEAT_AVENUE_BEYOND
 
     JBOX_EMBLEM_NORMAL: Final[int] = 1
     JBOX_EMBLEM_PREMIUM: Final[int] = 2
@@ -116,7 +116,7 @@ class JubeatAvenue(
     ]
 
     def previous_version(self) -> Optional[JubeatBase]:
-        return JubeatFesto(self.data, self.config, self.model)
+        return JubeatAvenue(self.data, self.config, self.model)
 
     def game_to_db_chart(self, game_chart: int, hard_mode: bool) -> int:
         if hard_mode:
@@ -1700,6 +1700,13 @@ class JubeatAvenue(
             )
         )
 
+        judge_disp = Node.void("judge_disp")
+        info.add_child(judge_disp)
+        judge_disp.add_child(Node.bool("is_available", True))
+        random_option = Node.void("random_option")
+        info.add_child(random_option)
+        random_option.add_child(Node.bool("is_available", True))
+
         jbox = Node.void("jbox")
         info.add_child(jbox)
         jbox.add_child(Node.s32("point", 0))
@@ -1953,7 +1960,7 @@ class JubeatAvenue(
         section_list.add_child(section)
         section.set_attribute('id', '1')
         section.add_child(Node.string('tube_text', 'len=12'))
-        section.add_child(Node.s32('required_jwatt', 2147483647))
+        section.add_child(Node.s32('required_jwatt', 2147483647))  # 2147483647
         section.add_child(Node.s32('reward_type', 1))
         section.add_child(Node.s32('reward_param', 100))
         section.add_child(Node.string('dialogue', 'len=64'))
@@ -1961,14 +1968,14 @@ class JubeatAvenue(
 
         return info
 
-    def handle_shopinfo_ave_regist_request(self, request: Node) -> Node:
+    def handle_shopinfo_ave2_regist_request(self, request: Node) -> Node:
         # Update the name of this cab for admin purposes
         self.update_machine_name(request.child_value("shop/name"))
 
-        shopinfo_ave = Node.void("shopinfo_ave")
+        shopinfo_ave2 = Node.void("shopinfo_ave2")
 
         data = Node.void("data")
-        shopinfo_ave.add_child(data)
+        shopinfo_ave2.add_child(data)
         data.add_child(Node.u32("cabid", 1))
         data.add_child(Node.string("locationid", "nowhere"))
         data.add_child(Node.u8("tax_phase", 1))
@@ -1979,10 +1986,10 @@ class JubeatAvenue(
 
         data.add_child(self.__get_global_info())
 
-        return shopinfo_ave
+        return shopinfo_ave2
 
-    def handle_demodata_ave_get_info_request(self, request: Node) -> Node:
-        root = Node.void("demodata_ave")
+    def handle_demodata_ave2_get_info_request(self, request: Node) -> Node:
+        root = Node.void("demodata_ave2")
         data = Node.void("data")
         root.add_child(data)
 
@@ -2065,17 +2072,17 @@ class JubeatAvenue(
 
         return root
 
-    def handle_demodata_ave_get_jbox_list_request(self, request: Node) -> Node:
-        root = Node.void("demodata_ave")
+    def handle_demodata_ave2_get_jbox_list_request(self, request: Node) -> Node:
+        root = Node.void("demodata_ave2")
         return root
 
-    def handle_jbox_ave_get_agreement_request(self, request: Node) -> Node:
-        root = Node.void("jbox_ave")
+    def handle_jbox_ave2_get_agreement_request(self, request: Node) -> Node:
+        root = Node.void("jbox_ave2")
         root.add_child(Node.bool("is_agreement", True))
         return root
 
-    def handle_jbox_ave_get_list_request(self, request: Node) -> Node:
-        root = Node.void("jbox_ave")
+    def handle_jbox_ave2_get_list_request(self, request: Node) -> Node:
+        root = Node.void("jbox_ave2")
         root.add_child(Node.void("selection_list"))
         return root
 
@@ -2083,8 +2090,8 @@ class JubeatAvenue(
         root = Node.void("ins")
         return root
 
-    def handle_lab_ave_get_ranking_request(self, request: Node) -> Node:
-        root = Node.void("lab_ave")
+    def handle_lab_ave2_get_ranking_request(self, request: Node) -> Node:
+        root = Node.void("lab_ave2")
         root.add_child(Node.s8("category", request.child_value("category") or 0))
 
         entries = Node.void("entries")
@@ -2098,10 +2105,10 @@ class JubeatAvenue(
 
         return root
 
-    def handle_recommend_ave_get_recommend_request(self, request: Node) -> Node:
-        recommend_ave = Node.void("recommend_ave")
+    def handle_recommend_ave2_get_recommend_request(self, request: Node) -> Node:
+        recommend_ave2 = Node.void("recommend_ave2")
         data = Node.void("data")
-        recommend_ave.add_child(data)
+        recommend_ave2.add_child(data)
 
         player = Node.void("player")
         data.add_child(player)
@@ -2118,17 +2125,17 @@ class JubeatAvenue(
             music.add_child(Node.s32("music_id", song.id))
             music.add_child(Node.s8("seq", song.chart))
 
-        return recommend_ave
+        return recommend_ave2
 
-    def handle_gametop_ave_get_info_request(self, request: Node) -> Node:
-        root = Node.void("gametop_ave")
+    def handle_gametop_ave2_get_info_request(self, request: Node) -> Node:
+        root = Node.void("gametop_ave2")
         data = Node.void("data")
         root.add_child(data)
         data.add_child(self.__get_global_info())
 
         return root
 
-    def handle_gametop_ave_regist_request(self, request: Node) -> Node:
+    def handle_gametop_ave2_regist_request(self, request: Node) -> Node:
         data = request.child("data")
         player = data.child("player")
         refid = player.child_value("refid")
@@ -2136,28 +2143,28 @@ class JubeatAvenue(
         root = self.new_profile_by_refid(refid, name)
         return root
 
-    def handle_gametop_ave_get_pdata_request(self, request: Node) -> Node:
+    def handle_gametop_ave2_get_pdata_request(self, request: Node) -> Node:
         data = request.child("data")
         player = data.child("player")
         refid = player.child_value("refid")
         root = self.get_profile_by_refid(refid)
         if root is None:
-            root = Node.void("gametop_ave")
+            root = Node.void("gametop_ave2")
             root.set_attribute("status", str(Status.NO_PROFILE))
         return root
 
-    def handle_gametop_ave_get_mdata_request(self, request: Node) -> Node:
+    def handle_gametop_ave2_get_mdata_request(self, request: Node) -> Node:
         data = request.child("data")
         player = data.child("player")
         extid = player.child_value("jid")
         mdata_ver = player.child_value("mdata_ver")
         root = self.get_scores_by_extid(extid, mdata_ver, 3)
         if root is None:
-            root = Node.void("gametop_ave")
+            root = Node.void("gametop_ave2")
             root.set_attribute("status", str(Status.NO_PROFILE))
         return root
 
-    def handle_gameend_ave_final_request(self, request: Node) -> Node:
+    def handle_gameend_ave2_final_request(self, request: Node) -> Node:
         data = request.child("data")
         player = data.child("player")
 
@@ -2212,10 +2219,10 @@ class JubeatAvenue(
         if userid is not None and profile is not None:
             self.put_profile(userid, profile)
 
-        return Node.void("gameend_ave")
+        return Node.void("gameend_ave2")
 
     def format_scores(self, userid: UserID, profile: Profile, scores: List[Score]) -> Node:
-        root = Node.void("gametop_ave")
+        root = Node.void("gametop_ave2")
         datanode = Node.void("data")
         root.add_child(datanode)
         player = Node.void("player")
@@ -2331,7 +2338,7 @@ class JubeatAvenue(
         return root
 
     def format_profile(self, userid: UserID, profile: Profile) -> Node:
-        root = Node.void("gametop_ave")
+        root = Node.void("gametop_ave2")
         data = Node.void("data")
         root.add_child(data)
 
@@ -2428,6 +2435,8 @@ class JubeatAvenue(
         settings.add_child(Node.s8("matching", lastdict.get_int("matching")))
         settings.add_child(Node.s8("hard", lastdict.get_int("hard")))
         settings.add_child(Node.s8("hazard", lastdict.get_int("hazard")))
+        settings.add_child(Node.s8("random_option", lastdict.get_int("random_option")))
+        settings.add_child(Node.s8("judge_disp", lastdict.get_int("judge_disp")))
         settings.add_child(Node.s32("target_type", 0))
 
         # Hack to make the default emblem appear properly.
@@ -2509,9 +2518,9 @@ class JubeatAvenue(
             if rivalcount >= 3:
                 break
 
-        lab_ave_edit_seq = Node.void("lab_ave_edit_seq")
-        player.add_child(lab_ave_edit_seq)
-        lab_ave_edit_seq.set_attribute("count", "0")
+        lab_ave2_edit_seq = Node.void("lab_ave2_edit_seq")
+        player.add_child(lab_ave2_edit_seq)
+        lab_ave2_edit_seq.set_attribute("count", "0")
 
         # Full combo challenge
         entry = self.data.local.game.get_time_sensitive_settings(self.game, self.version, "fc_challenge")
@@ -2650,13 +2659,13 @@ class JubeatAvenue(
             coursenode.add_child(Node.s8("status", status))
 
         # For some reason, this is on the course list node this time around.
-        category_list = Node.void("category_list")
-        course_list.add_child(category_list)
-        for categoryid in range(1, 7):
-            category = Node.void("category")
-            category_list.add_child(category)
-            category.set_attribute("id", str(categoryid))
-            category.add_child(Node.bool("is_display", True))
+        # category_list = Node.void("category_list")
+        # course_list.add_child(category_list)
+        # for categoryid in range(1, 7):
+        #     category = Node.void("category")
+        #     category_list.add_child(category)
+        #     category.set_attribute("id", str(categoryid))
+        #     category.add_child(Node.bool("is_display", True))
 
         # Fill in category
         fill_in_category = Node.void("fill_in_category")
@@ -2756,8 +2765,9 @@ class JubeatAvenue(
         section = Node.void('section')
         section_list.add_child(section)
         section.set_attribute('id', '1')
-        section.add_child(Node.s32('acquired_jwatt', 50))
-        # section.add_child(Node.s32("acquired_jwatt", profile.get_int("acquired_jwatt")))  # Use this to increment jwatt normally, but unlocks aren't working yet
+        # section.add_child(Node.s32('acquired_jwatt', 50))  #Need to implement this
+        section.add_child(Node.s32("acquired_jwatt", profile.get_int("acquired_jwatt")))
+        section.add_child(Node.bool("is_cleared", False))
         section.add_child(Node.void('mission_list'))
 
         # Festo dungeon
@@ -2829,6 +2839,8 @@ class JubeatAvenue(
                 last.replace_int("title", settings.child_value("title"))
                 last.replace_int("parts", settings.child_value("parts"))
                 last.replace_int("rank_sort", settings.child_value("rank_sort"))
+                last.replace_int("random_option", settings.child_value("random_option"))
+                last.replace_int("judge_disp", settings.child_value("judge_disp"))
                 last.replace_int("combo_disp", settings.child_value("combo_disp"))
                 last.replace_int_array("emblem", 5, settings.child_value("emblem"))
 
@@ -3189,17 +3201,17 @@ class JubeatAvenue(
         # Save back last information gleaned from results
         newprofile.replace_dict("last", last)
 
-        # Lightchat stuff, uncomment this once unlocks and stuff start working
-        # lightchat = player.child("lightchat")
-        # map_list = lightchat.child("map_list")
-        # map = map_list.child("map")
-        # event_list = map.child("event_list")
-        # event = event_list.child("event")
-        # section_list = event.child("section_list")
-        # section = section_list.child("section")
-        # acquired_jwatt = section.child_value("acquired_jwatt")
-        # # newprofile.replace_int("acquired_jwatt", int(oldprofile.get_int("acquired_jwatt"))+int(acquired_jwatt)) # this was giving us double counted Jwatt so hopefully below method is correct
-        # newprofile.replace_int("acquired_jwatt", int(acquired_jwatt)) # This takes the value from data/player/lightchat/..../section/acquired_jwatt and replaces what was already there. Ideally we want to combine them.
+        # Lightchat stuff
+        lightchat = player.child("lightchat")
+        map_list = lightchat.child("map_list")
+        map = map_list.child("map")
+        event_list = map.child("event_list")
+        event = event_list.child("event")
+        section_list = event.child("section_list")
+        section = section_list.child("section")
+        acquired_jwatt = section.child_value("acquired_jwatt")
+        # newprofile.replace_int("acquired_jwatt", int(oldprofile.get_int("acquired_jwatt"))+int(acquired_jwatt)) # this was giving us double counted Jwatt so hopefully below method is correct
+        newprofile.replace_int("acquired_jwatt", int(acquired_jwatt))  # This takes the value from data/player/lightchat/..../section/acquired_jwatt and replaces what was already there. Ideally we want to combine them.
         festo_dungeon = player.child("festo_dungeon")
         if festo_dungeon is not None:
             newprofile.replace_int("festo_dungeon_phase", festo_dungeon.child_value("phase"))

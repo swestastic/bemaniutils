@@ -36,6 +36,7 @@ class JubeatFrontend(FrontendBase):
             VersionConstants.JUBEAT_CLAN: 8,
             VersionConstants.JUBEAT_FESTO: 9,
             VersionConstants.JUBEAT_AVENUE: 10,
+            VersionConstants.JUBEAT_AVENUE_BEYOND: 11,
         }
 
         for game, version, name in self.all_games():
@@ -77,6 +78,7 @@ class JubeatFrontend(FrontendBase):
             VersionConstants.JUBEAT_CLAN,
             VersionConstants.JUBEAT_FESTO,
             VersionConstants.JUBEAT_AVENUE,
+            VersionConstants.JUBEAT_AVENUE_BEYOND,
         }:
             return {
                 "emblems": [
@@ -162,17 +164,18 @@ class JubeatFrontend(FrontendBase):
                 VersionConstants.JUBEAT_QUBELL,
                 VersionConstants.JUBEAT_FESTO,
                 VersionConstants.JUBEAT_AVENUE,  # Not sure if this is necessary
+                VersionConstants.JUBEAT_AVENUE_BEYOND,
                 # VersionConstants.JUBEAT_CLAN,
             }
             else 0
         )
         formatted_profile["pick_up_jubility"] = (
-            profile.get_float("pick_up_jubility") if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE else 0
+            profile.get_float("pick_up_jubility") if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE or profile.version == VersionConstants.JUBEAT_AVENUE_BEYOND else 0
         )
         formatted_profile["common_jubility"] = (
-            profile.get_float("common_jubility") if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE else 0
+            profile.get_float("common_jubility") if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE or profile.version == VersionConstants.JUBEAT_AVENUE_BEYOND else 0
         )
-        if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE:
+        if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE or profile.version == VersionConstants.JUBEAT_AVENUE_BEYOND:
             # Only reason this is a dictionary of dictionaries is because ValidatedDict doesn't support a list of dictionaries.
             # Probably intentionally lol. Just listify the pickup/common charts.
             formatted_profile["pick_up_chart"] = list(profile.get_dict("pick_up_chart").values())
@@ -235,6 +238,7 @@ class JubeatFrontend(FrontendBase):
                 VersionConstants.JUBEAT_CLAN: 8,
                 VersionConstants.JUBEAT_FESTO: 9,
                 VersionConstants.JUBEAT_AVENUE: 10,
+                VersionConstants.JUBEAT_AVENUE_BEYOND: 11,
             }[version]
         return formatted_song
 

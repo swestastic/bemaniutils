@@ -256,6 +256,7 @@ def lookup(protoversion: str, requestgame: str, requestversion: str) -> Dict[str
                 "8": VersionConstants.JUBEAT_CLAN,
                 "9": VersionConstants.JUBEAT_FESTO,
                 "10": VersionConstants.JUBEAT_AVENUE,
+                "11": VersionConstants.JUBEAT_AVENUE_BEYOND,
             },
             GameConstants.MUSECA: {
                 "1": VersionConstants.MUSECA,

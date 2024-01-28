@@ -181,6 +181,7 @@ class APIClient:
                     VersionConstants.JUBEAT_CLAN: "8",
                     VersionConstants.JUBEAT_FESTO: "9",
                     VersionConstants.JUBEAT_AVENUE: "10",
+                    VersionConstants.JUBEAT_AVENUE_BEYOND: "11",
                 },
                 GameConstants.MUSECA: {
                     VersionConstants.MUSECA: "1",

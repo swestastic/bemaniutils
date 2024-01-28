@@ -21,6 +21,7 @@ class ImportJubeat:
             "clan": VersionConstants.JUBEAT_CLAN,
             "festo": VersionConstants.JUBEAT_FESTO,
             "avenue": VersionConstants.JUBEAT_AVENUE,
+            "avenue-beyond": VersionConstants.JUBEAT_AVENUE_BEYOND,
         }.get(version, -1)
         if actual_version in {
             VersionConstants.JUBEAT_PROP,
@@ -28,10 +29,11 @@ class ImportJubeat:
             VersionConstants.JUBEAT_CLAN,
             VersionConstants.JUBEAT_FESTO,
             VersionConstants.JUBEAT_AVENUE,
+            VersionConstants.JUBEAT_AVENUE_BEYOND,
         }:
             self.version = actual_version
         else:
-            raise Exception("Unsupported Jubeat version, expected one of the following: prop, qubell, clan, festo!")
+            raise Exception("Unsupported Jubeat version, expected one of the following: prop, qubell, clan, festo, avenue, avenue-beyond!")
 
         self.config = config
         self.update = update

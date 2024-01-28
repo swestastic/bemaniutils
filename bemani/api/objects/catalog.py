@@ -47,6 +47,7 @@ class CatalogObject(BaseObject):
             8: VersionConstants.JUBEAT_CLAN,
             9: VersionConstants.JUBEAT_FESTO,
             10: VersionConstants.JUBEAT_AVENUE,
+            11: VersionConstants.JUBEAT_AVENUE_BEYOND,
         }.get(int(song.id / 10000000), VersionConstants.JUBEAT)
         # Map the category to the version numbers defined on BEMAPI.
         categorymapping = {
@@ -64,6 +65,7 @@ class CatalogObject(BaseObject):
             VersionConstants.JUBEAT_CLAN: "8",
             VersionConstants.JUBEAT_FESTO: "9",
             VersionConstants.JUBEAT_AVENUE: "10",
+            VersionConstants.JUBEAT_AVENUE_BEYOND: "11",
         }
         return {
             "difficulty": song.data.get_int("difficulty"),
