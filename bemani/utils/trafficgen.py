@@ -21,6 +21,7 @@ from bemani.client.jubeat import (
     JubeatClanClient,
     JubeatFestoClient,
     JubeatAvenueClient,
+    JubeatAvenueBeyondClient,
 )
 from bemani.client.popn import (
     PopnMusicTuneStreetClient,
@@ -663,7 +664,7 @@ def main() -> None:
         "jubeat-8": "jubeat-clan",
         "jubeat-9": "jubeat-festo",
         "jubeat-10": "jubeat-avenue",
-        "jubeat-11": "jubeat-avenue-beyond",
+        "jubeat-10+": "jubeat-avenue-beyond",
         "ddr-12": "ddr-x2",
         "ddr-13": "ddr-x3",
         "ddr-14": "ddr-2013",

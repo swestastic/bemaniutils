@@ -777,7 +777,7 @@ class JubeatAvenueBeyondClient(BaseClient):
                 raise Exception(f"Invalid refid '{ref_id}' returned when registering card")
             if ref_id != self.verify_cardmng_inquire(card, msg_type="new", paseli_enabled=paseli_enabled):
                 raise Exception(f"Invalid refid '{ref_id}' returned when querying card")
-            self.verify_gametop_ave_regist(card, ref_id)
+            self.verify_gametop_ave2_regist(card, ref_id)
         else:
             print("Skipping new card checks for existing card")
             ref_id = self.verify_cardmng_inquire(card, msg_type="query", paseli_enabled=paseli_enabled)

@@ -15,6 +15,6 @@ __all__ = [
     "JubeatQubellClient",
     "JubeatClanClient",
     "JubeatFestoClient",
-    "JubeatAvenueClient"
-    "JubeatAvenueBeyondClient"
+    "JubeatAvenueClient",
+    "JubeatAvenueBeyondClient",
 ]

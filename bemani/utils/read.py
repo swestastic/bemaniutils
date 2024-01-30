@@ -2164,7 +2164,7 @@ class ImportJubeat(ImportBase):
         no_combine: bool,
         update: bool,
     ) -> None:
-        if version in ["saucer", "saucer-fulfill", "prop", "qubell", "clan", "festo", "avenue","avenue-beyond"]:
+        if version in ["saucer", "saucer-fulfill", "prop", "qubell", "clan", "festo", "avenue", "avenue-beyond"]:
             actual_version = {
                 "saucer": VersionConstants.JUBEAT_SAUCER,
                 "saucer-fulfill": VersionConstants.JUBEAT_SAUCER_FULFILL,
