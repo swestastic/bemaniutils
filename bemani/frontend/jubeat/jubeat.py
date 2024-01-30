@@ -170,12 +170,24 @@ class JubeatFrontend(FrontendBase):
             else 0
         )
         formatted_profile["pick_up_jubility"] = (
-            profile.get_float("pick_up_jubility") if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE or profile.version == VersionConstants.JUBEAT_AVENUE_BEYOND else 0
+            profile.get_float("pick_up_jubility")
+            if profile.version == VersionConstants.JUBEAT_FESTO
+            or profile.version == VersionConstants.JUBEAT_AVENUE
+            or profile.version == VersionConstants.JUBEAT_AVENUE_BEYOND
+            else 0
         )
         formatted_profile["common_jubility"] = (
-            profile.get_float("common_jubility") if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE or profile.version == VersionConstants.JUBEAT_AVENUE_BEYOND else 0
+            profile.get_float("common_jubility")
+            if profile.version == VersionConstants.JUBEAT_FESTO
+            or profile.version == VersionConstants.JUBEAT_AVENUE
+            or profile.version == VersionConstants.JUBEAT_AVENUE_BEYOND
+            else 0
         )
-        if profile.version == VersionConstants.JUBEAT_FESTO or profile.version == VersionConstants.JUBEAT_AVENUE or profile.version == VersionConstants.JUBEAT_AVENUE_BEYOND:
+        if (
+            profile.version == VersionConstants.JUBEAT_FESTO
+            or profile.version == VersionConstants.JUBEAT_AVENUE
+            or profile.version == VersionConstants.JUBEAT_AVENUE_BEYOND
+        ):
             # Only reason this is a dictionary of dictionaries is because ValidatedDict doesn't support a list of dictionaries.
             # Probably intentionally lol. Just listify the pickup/common charts.
             formatted_profile["pick_up_chart"] = list(profile.get_dict("pick_up_chart").values())

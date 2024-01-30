@@ -319,7 +319,7 @@ class JubeatAvenueClient(BaseClient):
 
         # Required nodes for events and stuff
         self.assert_path(resp, "response/gametop_ave/data/player/rivallist")
-        self.assert_path(resp, "response/gametop_ave/data/player/lab_edit_seq")
+        self.assert_path(resp, "response/gametop_ave/data/player/lab_ave_edit_seq")
         self.assert_path(resp, "response/gametop_ave/data/player/fc_challenge/today/music_id")
         self.assert_path(resp, "response/gametop_ave/data/player/fc_challenge/today/state")
         self.assert_path(resp, "response/gametop_ave/data/player/fc_challenge/whim/music_id")
@@ -357,9 +357,7 @@ class JubeatAvenueClient(BaseClient):
             resp,
             "response/gametop_ave/data/player/fill_in_category/normal/excellent_flag_list",
         )
-        self.assert_path(
-            resp, "response/gametop_ave/data/player/fill_in_category/hard/no_gray_flag_list"
-        )
+        self.assert_path(resp, "response/gametop_ave/data/player/fill_in_category/hard/no_gray_flag_list")
         self.assert_path(
             resp,
             "response/gametop_ave/data/player/fill_in_category/hard/all_yellow_flag_list",

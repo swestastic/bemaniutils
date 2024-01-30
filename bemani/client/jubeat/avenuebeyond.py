@@ -173,7 +173,7 @@ class JubeatAvenueBeyondClient(BaseClient):
         resp = self.exchange("", call)
 
         # Verify that response is correct
-        self.assert_path(resp, "response/2/@status")
+        self.assert_path(resp, "response/2/@status")  # BROKEN! FIX ME!
 
     def verify_demodata_ave2_get_info(self) -> None:
         call = self.call_node()
@@ -319,7 +319,7 @@ class JubeatAvenueBeyondClient(BaseClient):
 
         # Required nodes for events and stuff
         self.assert_path(resp, "response/gametop_ave2/data/player/rivallist")
-        self.assert_path(resp, "response/gametop_ave2/data/player/lab_edit_seq")
+        self.assert_path(resp, "response/gametop_ave2/data/player/lab_ave2_edit_seq")
         self.assert_path(resp, "response/gametop_ave2/data/player/fc_challenge/today/music_id")
         self.assert_path(resp, "response/gametop_ave2/data/player/fc_challenge/today/state")
         self.assert_path(resp, "response/gametop_ave2/data/player/fc_challenge/whim/music_id")
@@ -340,11 +340,8 @@ class JubeatAvenueBeyondClient(BaseClient):
         self.assert_path(resp, "response/gametop_ave2/data/player/emo_list")
         self.assert_path(resp, "response/gametop_ave2/data/player/server")
         self.assert_path(resp, "response/gametop_ave2/data/player/course_list")
-        self.assert_path(resp, "response/gametop_ave2/data/player/course_list/category_list")
-        self.assert_path(
-            resp,
-            "response/gametop_ave2/data/player/fill_in_category/normal/no_gray_flag_list",
-        )
+        # self.assert_path(resp, "response/gametop_ave2/data/player/course_list/category_list")  # I took category list off of the course_list node so this isn't necessary. Game doesn't seem to require it being on that node?
+        self.assert_path(resp, "response/gametop_ave2/data/player/fill_in_category/normal/no_gray_flag_list")
         self.assert_path(
             resp,
             "response/gametop_ave2/data/player/fill_in_category/normal/all_yellow_flag_list",
@@ -357,9 +354,7 @@ class JubeatAvenueBeyondClient(BaseClient):
             resp,
             "response/gametop_ave2/data/player/fill_in_category/normal/excellent_flag_list",
         )
-        self.assert_path(
-            resp, "response/gametop_ave2/data/player/fill_in_category/hard/no_gray_flag_list"
-        )
+        self.assert_path(resp, "response/gametop_ave2/data/player/fill_in_category/hard/no_gray_flag_list")
         self.assert_path(
             resp,
             "response/gametop_ave2/data/player/fill_in_category/hard/all_yellow_flag_list",
