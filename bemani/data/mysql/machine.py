@@ -1,6 +1,6 @@
-from sqlalchemy import Table, Column, UniqueConstraint  # type: ignore
-from sqlalchemy.types import String, Integer, JSON  # type: ignore
-from sqlalchemy.dialects.mysql import BIGINT as BigInteger  # type: ignore
+from sqlalchemy import Table, Column, UniqueConstraint
+from sqlalchemy.types import String, Integer, JSON
+from sqlalchemy.dialects.mysql import BIGINT as BigInteger
 from typing import Optional, Dict, List, Tuple, Any
 from typing_extensions import Final
 

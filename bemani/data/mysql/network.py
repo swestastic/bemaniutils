@@ -1,6 +1,6 @@
-from sqlalchemy import Table, Column, UniqueConstraint  # type: ignore
-from sqlalchemy.types import String, Integer, Text, JSON  # type: ignore
-from sqlalchemy.dialects.mysql import BIGINT as BigInteger  # type: ignore
+from sqlalchemy import Table, Column, UniqueConstraint
+from sqlalchemy.types import String, Integer, Text, JSON
+from sqlalchemy.dialects.mysql import BIGINT as BigInteger
 from typing import Optional, Dict, List, Tuple, Any
 
 from bemani.common import GameConstants, Time

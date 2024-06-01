@@ -177,7 +177,7 @@ class JubeatBase(CoreHandler, CardManagerHandler, PASELIHandler, Base):
         else:
             # We will want to fetch the remaining scores that were in our
             # cache.
-            scores = self.cache.get(cache_key)  # type: ignore
+            scores = self.cache.get(cache_key)
 
         if len(scores) < 50:
             # We simply return the whole amount for this, and cache nothing.

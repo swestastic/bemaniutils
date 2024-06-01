@@ -530,10 +530,14 @@ class JubeatFesto(
                     ],
                     [
                         (
-                            80000034
-                            if dataver < 2020062900
-                            else (
-                                30000108 if dataver < 2020091300 else (40000107 if dataver < 2021020100 else 30000004)
+                            (
+                                80000034
+                                if dataver < 2020062900
+                                else (
+                                    30000108
+                                    if dataver < 2020091300
+                                    else (40000107 if dataver < 2021020100 else 30000004)
+                                )
                             ),
                             0,
                         ),

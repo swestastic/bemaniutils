@@ -11,9 +11,9 @@ import struct
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from sqlalchemy.engine import CursorResult  # type: ignore
-from sqlalchemy.orm import sessionmaker  # type: ignore
-from sqlalchemy.sql import text  # type: ignore
-from sqlalchemy.exc import IntegrityError  # type: ignore
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.sql import text
+from sqlalchemy.exc import IntegrityError
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from bemani.common import (
@@ -1943,15 +1943,21 @@ class ImportPopn(ImportBase):
                         "artist": read_string(unpacked[config.artist_offset]),
                         "genre": read_string(unpacked[config.genre_offset]),
                         "comment": read_string(unpacked[config.comment_offset]),
-                        "title_en": read_string(unpacked[config.english_title_offset])
-                        if config.english_title_offset is not None
-                        else "",
-                        "artist_en": read_string(unpacked[config.english_artist_offset])
-                        if config.english_artist_offset is not None
-                        else "",
-                        "long_genre": read_string(unpacked[config.extended_genre_offset])
-                        if config.extended_genre_offset is not None
-                        else "",
+                        "title_en": (
+                            read_string(unpacked[config.english_title_offset])
+                            if config.english_title_offset is not None
+                            else ""
+                        ),
+                        "artist_en": (
+                            read_string(unpacked[config.english_artist_offset])
+                            if config.english_artist_offset is not None
+                            else ""
+                        ),
+                        "long_genre": (
+                            read_string(unpacked[config.extended_genre_offset])
+                            if config.extended_genre_offset is not None
+                            else ""
+                        ),
                         "folder": unpacked[config.folder_offset],
                         "difficulty": {
                             "standard": {
@@ -1967,24 +1973,28 @@ class ImportPopn(ImportBase):
                         },
                         "file": {
                             "standard": {
-                                "easy": file_handle(config, unpacked[config.easy_file_offset])
-                                if valid_charts[0]
-                                else "",
-                                "normal": file_handle(config, unpacked[config.normal_file_offset])
-                                if valid_charts[1]
-                                else "",
-                                "hyper": file_handle(config, unpacked[config.hyper_file_offset])
-                                if valid_charts[2]
-                                else "",
+                                "easy": (
+                                    file_handle(config, unpacked[config.easy_file_offset]) if valid_charts[0] else ""
+                                ),
+                                "normal": (
+                                    file_handle(config, unpacked[config.normal_file_offset]) if valid_charts[1] else ""
+                                ),
+                                "hyper": (
+                                    file_handle(config, unpacked[config.hyper_file_offset]) if valid_charts[2] else ""
+                                ),
                                 "ex": file_handle(config, unpacked[config.ex_file_offset]) if valid_charts[3] else "",
                             },
                             "battle": {
-                                "normal": file_handle(config, unpacked[config.battle_normal_file_offset])
-                                if valid_charts[4]
-                                else "",
-                                "hyper": file_handle(config, unpacked[config.battle_hyper_file_offset])
-                                if valid_charts[5]
-                                else "",
+                                "normal": (
+                                    file_handle(config, unpacked[config.battle_normal_file_offset])
+                                    if valid_charts[4]
+                                    else ""
+                                ),
+                                "hyper": (
+                                    file_handle(config, unpacked[config.battle_hyper_file_offset])
+                                    if valid_charts[5]
+                                    else ""
+                                ),
                             },
                         },
                     }
@@ -1998,7 +2008,11 @@ class ImportPopn(ImportBase):
                         # This is a removed song
                         continue
 
-                    if songinfo["title"] == "ＤＵＭＭＹ" and songinfo["artist"] == "ＤＵＭＭＹ" and songinfo["genre"] == "ＤＵＭＭＹ":
+                    if (
+                        songinfo["title"] == "ＤＵＭＭＹ"
+                        and songinfo["artist"] == "ＤＵＭＭＹ"
+                        and songinfo["genre"] == "ＤＵＭＭＹ"
+                    ):
                         # This is a song the intern left in
                         continue
 

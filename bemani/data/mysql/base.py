@@ -6,11 +6,11 @@ from typing_extensions import Final
 from bemani.common import Time
 from bemani.data.config import Config
 
-from sqlalchemy.engine.base import Connection  # type: ignore
 from sqlalchemy.engine import CursorResult  # type: ignore
-from sqlalchemy.sql import text  # type: ignore
-from sqlalchemy.types import String, Integer  # type: ignore
-from sqlalchemy import Table, Column, MetaData  # type: ignore
+from sqlalchemy.orm import scoped_session
+from sqlalchemy.sql import text
+from sqlalchemy.types import String, Integer
+from sqlalchemy import Table, Column, MetaData
 
 metadata = MetaData()
 
@@ -40,7 +40,7 @@ class _BytesEncoder(json.JSONEncoder):
 class BaseData:
     SESSION_LENGTH: Final[int] = 32
 
-    def __init__(self, config: Config, conn: Connection) -> None:
+    def __init__(self, config: Config, conn: scoped_session) -> None:
         """
         Initialize any DB singleton.
 

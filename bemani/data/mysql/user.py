@@ -1,8 +1,8 @@
 import random
-from sqlalchemy import Table, Column, UniqueConstraint  # type: ignore
-from sqlalchemy.types import String, Integer, JSON  # type: ignore
-from sqlalchemy.dialects.mysql import BIGINT as BigInteger  # type: ignore
-from sqlalchemy.exc import IntegrityError  # type: ignore
+from sqlalchemy import Table, Column, UniqueConstraint
+from sqlalchemy.types import String, Integer, JSON
+from sqlalchemy.dialects.mysql import BIGINT as BigInteger
+from sqlalchemy.exc import IntegrityError
 from typing import Optional, Dict, List, Tuple, Any
 from typing_extensions import Final
 from passlib.hash import pbkdf2_sha512  # type: ignore

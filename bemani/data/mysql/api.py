@@ -1,6 +1,6 @@
 import uuid
-from sqlalchemy import Table, Column  # type: ignore
-from sqlalchemy.types import String, Integer  # type: ignore
+from sqlalchemy import Table, Column
+from sqlalchemy.types import String, Integer
 from typing import Any, Dict, List, Optional
 
 from bemani.common import Time
