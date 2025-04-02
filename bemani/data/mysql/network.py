@@ -73,7 +73,7 @@ class NetworkData(BaseData):
                 result["title"],
                 result["body"],
             )
-            for result in cursor
+            for result in cursor.mappings()
         ]
 
     def create_news(self, title: str, body: str) -> int:
@@ -107,7 +107,7 @@ class NetworkData(BaseData):
             # Couldn't find an entry with this ID
             return None
 
-        result = cursor.fetchone()
+        result = cursor.mappings().fetchone()  # type: ignore
         return News(
             newsid,
             result["timestamp"],
@@ -181,7 +181,7 @@ class NetworkData(BaseData):
             # No scheduled work was registered, so time to get going!
             return True
 
-        result = cursor.fetchone()
+        result = cursor.mappings().fetchone()  # type: ignore
 
         if schedule == "daily":
             # Just look at the day and year, make sure it matches
@@ -317,7 +317,7 @@ class NetworkData(BaseData):
                 result["type"],
                 self.deserialize(result["data"]),
             )
-            for result in cursor
+            for result in cursor.mappings()
         ]
 
     def delete_events(self, oldest_event_ts: int) -> None:

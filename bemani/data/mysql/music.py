@@ -107,7 +107,7 @@ class MusicData(BaseData):
         if cursor.rowcount != 1:
             # music doesn't exist
             raise Exception(f"Song {songid} chart {songchart} doesn't exist for game {game} version {version}")
-        result = cursor.fetchone()
+        result = cursor.mappings().fetchone()  # type: ignore
         return result["id"]
 
     def put_score(
@@ -296,7 +296,7 @@ class MusicData(BaseData):
             # score doesn't exist
             return None
 
-        result = cursor.fetchone()
+        result = cursor.mappings().fetchone()  # type: ignore
         return Score(
             result["scorekey"],
             result["songid"],
@@ -356,7 +356,7 @@ class MusicData(BaseData):
             # score doesn't exist
             return None
 
-        result = cursor.fetchone()
+        result = cursor.mappings().fetchone()  # type: ignore
         return (
             UserID(result["userid"]),
             Score(
@@ -439,7 +439,7 @@ class MusicData(BaseData):
                 result["plays"],
                 self.deserialize(result["data"]),
             )
-            for result in cursor
+            for result in cursor.mappings()
         ]
 
     def get_most_played(self, game: GameConstants, version: int, userid: UserID, count: int) -> List[Tuple[int, int]]:
@@ -472,7 +472,7 @@ class MusicData(BaseData):
             {"userid": userid, "game": game.value, "version": version, "count": count},
         )
 
-        return [(result["songid"], result["plays"]) for result in cursor]
+        return [(result["songid"], result["plays"]) for result in cursor.mappings()]
 
     def get_last_played(self, game: GameConstants, version: int, userid: UserID, count: int) -> List[Tuple[int, int]]:
         """
@@ -504,7 +504,7 @@ class MusicData(BaseData):
             {"userid": userid, "game": game.value, "version": version, "count": count},
         )
 
-        return [(result["songid"], result["timestamp"]) for result in cursor]
+        return [(result["songid"], result["timestamp"]) for result in cursor.mappings()]
 
     def get_hit_chart(
         self,
@@ -551,7 +551,7 @@ class MusicData(BaseData):
             },
         )
 
-        return [(result["songid"], result["plays"]) for result in cursor]
+        return [(result["songid"], result["plays"]) for result in cursor.mappings()]
 
     def get_song(
         self,
@@ -597,7 +597,7 @@ class MusicData(BaseData):
         if cursor.rowcount != 1:
             # music doesn't exist
             return None
-        result = cursor.fetchone()
+        result = cursor.mappings().fetchone()  # type: ignore
         return Song(
             game,
             version,
@@ -647,7 +647,7 @@ class MusicData(BaseData):
                 result["genre"],
                 self.deserialize(result["data"]),
             )
-            for result in cursor
+            for result in cursor.mappings()
         ]
 
     def get_all_scores(
@@ -752,7 +752,7 @@ class MusicData(BaseData):
                     self.deserialize(result["data"]),
                 ),
             )
-            for result in cursor
+            for result in cursor.mappings()
         ]
 
     def get_all_records(
@@ -863,7 +863,7 @@ class MusicData(BaseData):
                     self.deserialize(result["data"]),
                 ),
             )
-            for result in cursor
+            for result in cursor.mappings()
         ]
 
     def get_attempt_by_key(self, game: GameConstants, version: int, key: int) -> Optional[Tuple[UserID, Attempt]]:
@@ -908,7 +908,7 @@ class MusicData(BaseData):
             # score doesn't exist
             return None
 
-        result = cursor.fetchone()
+        result = cursor.mappings().fetchone()  # type: ignore
         return (
             UserID(result["userid"]),
             Attempt(
@@ -1019,5 +1019,5 @@ class MusicData(BaseData):
                     self.deserialize(result["data"]),
                 ),
             )
-            for result in cursor
+            for result in cursor.mappings()
         ]

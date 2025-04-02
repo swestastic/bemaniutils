@@ -97,7 +97,6 @@ class Data:
         session_factory = sessionmaker(
             bind=config.database.engine,
             autoflush=True,
-            autocommit=True,
         )
         self.__config = config
         self.__session = scoped_session(session_factory)
@@ -136,7 +135,7 @@ class Data:
         # See if the DB was already created
         try:
             cursor = self.__session.execute(text("SELECT COUNT(version_num) AS count FROM alembic_version"))
-            return cursor.fetchone()["count"] == 1
+            return cursor.mappings().fetchone()["count"] == 1
         except ProgrammingError:
             return False
 

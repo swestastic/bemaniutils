@@ -6,7 +6,7 @@ from typing_extensions import Final
 from bemani.common import Time
 from bemani.data.config import Config
 
-from sqlalchemy.engine import CursorResult  # type: ignore
+from sqlalchemy.engine import CursorResult
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.sql import text
 from sqlalchemy.types import String, Integer
@@ -82,10 +82,12 @@ class BaseData:
                 includes = all(s in lowered for s in write_statement_group)
                 if includes and not safe_write_operation:
                     raise Exception("Read-only mode is active!")
-        return self.__conn.execute(
+        result = self.__conn.execute(
             text(sql),
             params if params is not None else {},
         )
+        self.__conn.commit()
+        return result
 
     def serialize(self, data: Dict[str, Any]) -> str:
         """
@@ -141,7 +143,7 @@ class BaseData:
             # Couldn't find a user with this session
             return None
 
-        result = cursor.fetchone()
+        result = cursor.mappings().fetchone()  # type: ignore
         return result["id"]
 
     def _create_session(self, opid: int, optype: str, expiration: int = (30 * 86400)) -> str:
