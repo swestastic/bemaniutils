@@ -17,7 +17,7 @@ types-Werkzeug
 types-Flask
 types-freezegun
 flake8
-typed-ast
+typed-ast ; python_version < "3.13"
 freezegun
 pyreact @ git+https://github.com/DragonMinded/react-python@main
 Flask-Caching

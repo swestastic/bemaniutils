@@ -306,7 +306,7 @@ which has the paths set up for correct imports.
 A convenience utility for helping reverse-engineer structures out of game DLLs/EXEs.
 You can give this a physical DLL offset or a virtual memory address for the start and
 end of the data as well as a python struct format (documentation at
-https://docs.python.org/3.6/library/struct.html) and this will print the decoded
+https://docs.python.org/3.8/library/struct.html) and this will print the decoded
 data to the screen one entry per line. It includes several enhancements for decoding
 pointers to sub-structures and pointers to C strings. Note that much like "psmap", this
 has the ability to print out structures that are dynamically constructed at runtime by
@@ -379,10 +379,10 @@ you aren't introducing any type errors into the codebase.
 
 ## Dependency Setup
 
-The code contained here assumes Python 3.6 as the base although it should work with
+The code contained here assumes Python 3.8 as the base although it should work with
 any newer version of python as well. If you don't have or don't want to install Python
-3.6 as your system python, it is recommended to use virtualenv to create a virtual
-environment. The rest of the installation will assume you have Python 3.6 working
+3.8 as your system python, it is recommended to use virtualenv to create a virtual
+environment. The rest of the installation will assume you have Python 3.8 working
 properly (and are in an activated virtual environment if this is the route you've
 chosen to go). If you have a newer version of python available this code should be
 compatible with that as well. This code is designed to run on Linux. However, it has
@@ -845,7 +845,7 @@ free certificate that you can manage easily. There are other ways to run this so
 and provide SSL credentials but I have no experience with or advice on them.
 
 The easiest way to get up and running is to install MySQL 5.7, nginx and uWSGI along
-with Python 3.6 or higher. Create a directory where the services will live and place
+with Python 3.8 or higher. Create a directory where the services will live and place
 a virtualenv inside it (outside the scope of this document). Then, the wsgi files found
 in `bemani/wsgi/` can be placed in the directory, uWSGI pointed at them and nginx set up.
 The setup for the top-level package will include all of the frontend templates, so you
