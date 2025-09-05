@@ -32,8 +32,6 @@ def jsonify_response(data: Dict[str, Any], code: int = 200) -> Response:
 
 @app.before_request
 def before_request() -> None:
-    global config
-
     g.config = config
     g.data = Data(config)
     g.authorized = False

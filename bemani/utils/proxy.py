@@ -237,8 +237,6 @@ def receive_request(path: str) -> Response:
 
 
 def load_proxy_config(filename: str) -> None:
-    global config
-
     config_data = yaml.safe_load(open(filename))
     if "pcbid" in config_data and config_data["pcbid"] is not None:
         for pcbid in config_data["pcbid"]:
@@ -248,8 +246,6 @@ def load_proxy_config(filename: str) -> None:
 
 
 def load_config(filename: str) -> None:
-    global config
-
     config_data = yaml.safe_load(open(filename))
     config.update(
         {

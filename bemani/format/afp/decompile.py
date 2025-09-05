@@ -3916,9 +3916,6 @@ class ByteCodeDecompiler(VerboseOutput):
             return statement
 
         def find_if_batches(statement: Statement) -> Optional[Statement]:
-            nonlocal batches
-            nonlocal processed
-
             if isinstance(statement, IfStatement):
                 # Don't sum up statements already grabbed by a previous invocation.
                 if statement in processed:
@@ -3972,7 +3969,6 @@ class ByteCodeDecompiler(VerboseOutput):
         def replace_if_with_switch(statement: Statement) -> Optional[Statement]:
             nonlocal changed
             nonlocal batches
-            nonlocal processed
 
             if isinstance(statement, IfStatement):
                 if statement not in processed:
@@ -3990,9 +3986,6 @@ class ByteCodeDecompiler(VerboseOutput):
 
                 # First, make sure all the if entries are an equals.
                 def swap_not_equals(statement: Statement) -> Optional[Statement]:
-                    nonlocal batch
-                    nonlocal new_batch
-
                     if isinstance(statement, IfStatement):
                         if statement not in batch:
                             return statement
@@ -4331,9 +4324,6 @@ class ByteCodeDecompiler(VerboseOutput):
 
         # Gather gotos and labels and make sure they're balanced.
         def gather_gotos_and_labels(statement: Statement) -> Optional[Statement]:
-            nonlocal gotos
-            nonlocal labels
-
             if isinstance(statement, GotoStatement):
                 gotos.add(statement.location)
             elif isinstance(statement, DefineLabelStatement):

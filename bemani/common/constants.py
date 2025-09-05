@@ -11,16 +11,16 @@ class GameConstants(Enum):
     in any of the tables should only contain one of the following strings.
     """
 
-    BISHI_BASHI: Final[str] = "bishi"
-    DANCE_EVOLUTION: Final[str] = "danevo"
-    DDR: Final[str] = "ddr"
-    IIDX: Final[str] = "iidx"
-    JUBEAT: Final[str] = "jubeat"
-    MGA: Final[str] = "mga"
-    MUSECA: Final[str] = "museca"
-    POPN_MUSIC: Final[str] = "pnm"
-    REFLEC_BEAT: Final[str] = "reflec"
-    SDVX: Final[str] = "sdvx"
+    BISHI_BASHI = "bishi"
+    DANCE_EVOLUTION = "danevo"
+    DDR = "ddr"
+    IIDX = "iidx"
+    JUBEAT = "jubeat"
+    MGA = "mga"
+    MUSECA = "museca"
+    POPN_MUSIC = "pnm"
+    REFLEC_BEAT = "reflec"
+    SDVX = "sdvx"
 
 
 class VersionConstants:
@@ -147,10 +147,10 @@ class APIConstants(Enum):
     The four types of IDs found in a BEMAPI request or response.
     """
 
-    ID_TYPE_SERVER: Final[str] = "server"
-    ID_TYPE_CARD: Final[str] = "card"
-    ID_TYPE_SONG: Final[str] = "song"
-    ID_TYPE_INSTANCE: Final[str] = "instance"
+    ID_TYPE_SERVER = "server"
+    ID_TYPE_CARD = "card"
+    ID_TYPE_SONG = "song"
+    ID_TYPE_INSTANCE = "instance"
 
 
 class DBConstants:
@@ -298,38 +298,38 @@ class BroadcastConstants(Enum):
     """
 
     # Sections related to the player/song/etc.
-    DJ_NAME: Final[str] = "DJ Name"
-    SONG_NAME: Final[str] = "Song"
-    ARTIST_NAME: Final[str] = "Artist"
-    DIFFICULTY: Final[str] = "Difficulty"
+    DJ_NAME = "DJ Name"
+    SONG_NAME = "Song"
+    ARTIST_NAME = "Artist"
+    DIFFICULTY = "Difficulty"
 
     # Section headers.
-    PLAY_STATS_HEADER: Final[str] = "Play Stats"
+    PLAY_STATS_HEADER = "Play Stats"
 
     # Stats that relate to the song, but not the current play of the song.
-    TARGET_EXSCORE: Final[str] = "Target EXScore"
-    BEST_CLEAR_STATUS: Final[str] = "Best Clear"
+    TARGET_EXSCORE = "Target EXScore"
+    BEST_CLEAR_STATUS = "Best Clear"
 
     # Stats that have to do with the current play of the song.
-    EXSCORE: Final[str] = "Your EXScore"
-    CLEAR_STATUS: Final[str] = "Clear Status"
-    PERFECT_GREATS: Final[str] = "Perfect Greats"
-    GREATS: Final[str] = "Greats"
-    GOODS: Final[str] = "Goods"
-    BADS: Final[str] = "Bads"
-    POORS: Final[str] = "Poors"
-    COMBO_BREAKS: Final[str] = "Combo Breaks"
-    SLOWS: Final[str] = "Slow"
-    FASTS: Final[str] = "Fast"
-    GRADE: Final[str] = "Grade"
-    RATE: Final[str] = "Score Rate"
+    EXSCORE = "Your EXScore"
+    CLEAR_STATUS = "Clear Status"
+    PERFECT_GREATS = "Perfect Greats"
+    GREATS = "Greats"
+    GOODS = "Goods"
+    BADS = "Bads"
+    POORS = "Poors"
+    COMBO_BREAKS = "Combo Breaks"
+    SLOWS = "Slow"
+    FASTS = "Fast"
+    GRADE = "Grade"
+    RATE = "Score Rate"
 
     # Added for Pnm
-    PLAYER_NAME: Final[str] = "Player Name"
-    SCORE: Final[str] = "Your Score"
-    COOLS: Final[str] = "Cools"
-    COMBO: Final[str] = "Combo"
-    MEDAL: Final[str] = "Medal"
+    PLAYER_NAME = "Player Name"
+    SCORE = "Your Score"
+    COOLS = "Cools"
+    COMBO = "Combo"
+    MEDAL = "Medal"
 
 
 class _RegionConstants:

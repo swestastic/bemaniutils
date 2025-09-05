@@ -335,12 +335,12 @@ def updatename() -> Dict[str, Any]:
     if (
         re.match(
             "^["
-            + "\uFF20-\uFF3A"
-            + "\uFF41-\uFF5A"  # widetext A-Z and @
-            + "\uFF10-\uFF19"  # widetext a-z
-            + "\uFF0C\uFF0E\uFF3F"  # widetext 0-9
-            + "\u3041-\u308D\u308F\u3092\u3093"  # widetext ,._
-            + "\u30A1-\u30ED\u30EF\u30F2\u30F3\u30FC"  # hiragana
+            + "\uff20-\uff3a"
+            + "\uff41-\uff5a"  # widetext A-Z and @
+            + "\uff10-\uff19"  # widetext a-z
+            + "\uff0c\uff0e\uff3f"  # widetext 0-9
+            + "\u3041-\u308d\u308f\u3092\u3093"  # widetext ,._
+            + "\u30a1-\u30ed\u30ef\u30f2\u30f3\u30fc"  # hiragana
             + "]*$",  # katakana
             name,
         )

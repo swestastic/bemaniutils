@@ -382,7 +382,7 @@ class TDXT:
                         | ((pixel[order[2]] >> 3) & 0x1F)
                     ),
                 )
-                for pixel in imgdata.getdata()
+                for pixel in imgdata.getdata()  # type: ignore
             )
         elif self.fmt == 0x13:
             # 16-bit A1R5G55 texture format.
@@ -396,7 +396,7 @@ class TDXT:
                         | ((pixel[order[2]] >> 3) & 0x1F)
                     ),
                 )
-                for pixel in imgdata.getdata()
+                for pixel in imgdata.getdata()  # type: ignore
             )
         elif self.fmt == 0x1F:
             # 16-bit 4-4-4-4 RGBA format.
@@ -410,7 +410,7 @@ class TDXT:
                         | (((pixel[3] >> 4) & 0xF) << 12)
                     ),
                 )
-                for pixel in imgdata.getdata()
+                for pixel in imgdata.getdata()  # type: ignore
             )
         elif self.fmt == 0x20:
             # 32-bit RGBA format, stored in BGRA order.
@@ -422,7 +422,7 @@ class TDXT:
                     pixel[order[0]],
                     pixel[3],
                 )
-                for pixel in imgdata.getdata()
+                for pixel in imgdata.getdata()  # type: ignore
             )
         else:
             raise Exception(f"Unsupported format {hex(self.fmt)} for TDXT file!")

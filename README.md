@@ -187,6 +187,16 @@ behavior makes fast iteration possible by treating JSX files the same way that t
 production webserver such as nginx to serve static files. Run it like `./jsx --help`
 to see help output and learn how to use it.
 
+## nvram
+
+A utility that can decrypt and re-encrypt files inside the nvram folder, including the
+`info.bin` file. This allows you to get part way to replacing files in the nvram of a
+cabinet that is running stock data. For XML files, to decrypt you will want to use
+the `--strip-padding` option. To re-encrypt, you will want to use the `--add-padding`
+option. For the `info.bin` file you will instead want to use `--no-reset` for both
+encryption and decryption. Note that the encryption is symmetrical, so the same
+utility can be called for both unwrapping and re-wrapping data.
+
 ## proxy
 
 A utility to MITM a network session. Point a game at the port this listens on, and

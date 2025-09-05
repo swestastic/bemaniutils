@@ -38,8 +38,6 @@ FRONTEND_CACHE_BUST: str = "site.1.3.react.16.14"
 
 @app.before_request
 def before_request() -> None:
-    global config
-
     g.cache = cache
     g.config = config
 

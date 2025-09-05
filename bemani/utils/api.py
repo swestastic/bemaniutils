@@ -9,12 +9,10 @@ from bemani.utils.config import (
 
 
 def load_config(filename: str) -> None:
-    global config
     base_load_config(filename, config)
 
 
 def instantiate_cache(app: Any) -> None:
-    global config
     base_instantiate_cache(config, app)
 
 

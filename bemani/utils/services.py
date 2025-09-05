@@ -21,7 +21,6 @@ config = Config()
 @app.route("/", defaults={"path": ""}, methods=["GET"])
 @app.route("/<path:path>", methods=["GET"])
 def receive_healthcheck(path: str) -> Response:
-    global config
     redirect_uri = config.server.redirect
     if redirect_uri is None:
         # Return a standard status OKAY message.
@@ -53,7 +52,6 @@ def receive_request(path: str) -> Response:
         return Response("Unrecognized packet!", 500)
 
     # Create and format config
-    global config
     requestconfig = config.clone()
     requestconfig["client"] = {
         "address": remote_address or request.remote_addr,
@@ -119,17 +117,14 @@ def receive_request(path: str) -> Response:
 
 
 def register_games() -> None:
-    global config
     base_register_games(config)
 
 
 def load_config(filename: str) -> None:
-    global config
     base_load_config(filename, config)
 
 
 def instantiate_cache(app: Any) -> None:
-    global config
     base_instantiate_cache(config, app)
 
 

@@ -136,31 +136,31 @@ def updatename() -> Dict[str, Any]:
     if (
         re.match(
             "^["
-            + "\uFF20-\uFF3A"
-            + "\uFF10-\uFF19"  # widetext A-Z, @
-            + "\u3041-\u308D\u308F\u3092\u3093"  # widetext 0-9
-            + "\u30A1-\u30ED\u30EF\u30F2\u30F3\u30FC"  # hiragana
+            + "\uff20-\uff3a"
+            + "\uff10-\uff19"  # widetext A-Z, @
+            + "\u3041-\u308d\u308f\u3092\u3093"  # widetext 0-9
+            + "\u30a1-\u30ed\u30ef\u30f2\u30f3\u30fc"  # hiragana
             + "\u3000"  # katakana
-            + "\u301C"  # widetext blank space
-            + "\u30FB"  # widetext ~
-            + "\u30FC"  # widetext middot
+            + "\u301c"  # widetext blank space
+            + "\u30fb"  # widetext ~
+            + "\u30fc"  # widetext middot
             + "\u2212"  # widetext long dash
             + "\u2605"  # widetext short dash
-            + "\uFF01"  # widetext heavy star
-            + "\uFF03"  # widetext !
-            + "\uFF04"  # widetext #
-            + "\uFF05"  # widetext $
-            + "\uFF06"  # widetext %
-            + "\uFF08"  # widetext &
-            + "\uFF09"  # widetext (
-            + "\uFF0A"  # widetext )
-            + "\uFF0B"  # widetext *
-            + "\uFF0F"  # widetext +
-            + "\uFF1C"  # widetext /
-            + "\uFF1D"  # widetext <
-            + "\uFF1E"  # widetext =
-            + "\uFF1F"  # widetext >
-            + "\uFFE5"  # widetext ?
+            + "\uff01"  # widetext heavy star
+            + "\uff03"  # widetext !
+            + "\uff04"  # widetext #
+            + "\uff05"  # widetext $
+            + "\uff06"  # widetext %
+            + "\uff08"  # widetext &
+            + "\uff09"  # widetext (
+            + "\uff0a"  # widetext )
+            + "\uff0b"  # widetext *
+            + "\uff0f"  # widetext +
+            + "\uff1c"  # widetext /
+            + "\uff1d"  # widetext <
+            + "\uff1e"  # widetext =
+            + "\uff1f"  # widetext >
+            + "\uffe5"  # widetext ?
             + "]*$",  # widetext Yen symbol
             name,
         )

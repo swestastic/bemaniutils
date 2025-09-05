@@ -2733,7 +2733,7 @@ class SWF(VerboseOutput, TrackedCoverage):
         ap2_data_version = magic[0] & 0xFF
         magic = bytes([magic[3] & 0x7F, magic[2] & 0x7F, magic[1] & 0x7F, 0x0])
         if magic != b"AP2\x00":
-            raise Exception(f"Unrecognzied magic {magic}!")
+            raise Exception(f"Unrecognzied magic {magic!r}!")
         if length != len(data):
             raise Exception(f"Unexpected length in AFP header, {length} != {len(data)}!")
         if ap2_data_version not in [7, 8, 9, 10]:

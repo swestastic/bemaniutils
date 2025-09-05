@@ -73,7 +73,7 @@ class TestXmlDecoder(unittest.TestCase):
         self.assertEqual(tree.name, "node")
         self.assertEqual(tree.attributes, {})
         self.assertEqual(tree.data_type, "bin")
-        self.assertEqual(tree.value, b"\xDE\xAD\xBE\xEF")
+        self.assertEqual(tree.value, b"\xde\xad\xbe\xef")
 
         xml = XmlDecoder(b'<node __type="bin">\nDEADBEEF\n</node>', "ascii")
         tree = xml.get_tree()
@@ -82,7 +82,7 @@ class TestXmlDecoder(unittest.TestCase):
         self.assertEqual(tree.name, "node")
         self.assertEqual(tree.attributes, {})
         self.assertEqual(tree.data_type, "bin")
-        self.assertEqual(tree.value, b"\xDE\xAD\xBE\xEF")
+        self.assertEqual(tree.value, b"\xde\xad\xbe\xef")
 
         xml = XmlDecoder(b'<node __type="bin"> D E A D B E E F </node>', "ascii")
         tree = xml.get_tree()
@@ -91,7 +91,7 @@ class TestXmlDecoder(unittest.TestCase):
         self.assertEqual(tree.name, "node")
         self.assertEqual(tree.attributes, {})
         self.assertEqual(tree.data_type, "bin")
-        self.assertEqual(tree.value, b"\xDE\xAD\xBE\xEF")
+        self.assertEqual(tree.value, b"\xde\xad\xbe\xef")
 
     def test_decode_array(self) -> None:
         xml = XmlDecoder(b'<node __type="u32" __count="4">1 2 3 4</node>', "ascii")

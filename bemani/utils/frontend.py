@@ -24,8 +24,6 @@ from bemani.utils.config import (
 
 
 def register_blueprints() -> None:
-    global config
-
     app.register_blueprint(account_pages)
     app.register_blueprint(admin_pages)
     app.register_blueprint(arcade_pages)
@@ -52,18 +50,15 @@ def register_blueprints() -> None:
 
 
 def register_games() -> None:
-    global config
     base_register_games(config)
 
 
 def load_config(filename: str) -> None:
-    global config
     base_load_config(filename, config)
     app.secret_key = config.secret_key
 
 
 def instantiate_cache(app: Any) -> None:
-    global config
     base_instantiate_cache(config, app)
 
 
